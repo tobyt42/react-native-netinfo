@@ -13,7 +13,6 @@ import android.net.LinkProperties;
 import android.net.Network;
 import android.net.NetworkCapabilities;
 import android.net.NetworkInfo;
-import android.net.NetworkRequest;
 import android.os.Build;
 
 import com.facebook.react.bridge.ReactApplicationContext;
@@ -40,8 +39,7 @@ class NetworkCallbackConnectivityReceiver extends ConnectivityReceiver {
     @SuppressLint("MissingPermission")
     void register() {
         try {
-            NetworkRequest.Builder builder = new NetworkRequest.Builder();
-            getConnectivityManager().registerNetworkCallback(builder.build(), mNetworkCallback);
+            getConnectivityManager().registerDefaultNetworkCallback(mNetworkCallback);
         } catch (SecurityException e) {
             // TODO: Display a yellow box about this
         }
